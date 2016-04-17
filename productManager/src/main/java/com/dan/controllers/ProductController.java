@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dan.exceptions.ModelNotFoundException;
-import com.dan.model.Product;
+import com.dan.model.ProductDTO;
 import com.dan.services.ProductService;
 
 @RestController
@@ -21,45 +21,45 @@ public class ProductController {
 	private ProductService productService;
 
 	@RequestMapping(value = "/products/", method = RequestMethod.GET)
-	public ResponseEntity<List<Product>> getAllProducts() {
-		List<Product> products = productService.getAll();
-		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+	public ResponseEntity<List<ProductDTO>> getAllProducts() {
+		List<ProductDTO> products = productService.getAll();
+		return new ResponseEntity<List<ProductDTO>>(products, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Product> getProductById(@PathVariable long id) {
-		Product searchedProduct = null;
+	public ResponseEntity<ProductDTO> getProductById(@PathVariable int id) {
+		ProductDTO searchedProduct = null;
 		try {
 			searchedProduct = productService.getById(id);
 		} catch (ModelNotFoundException e) {
-			new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+			new ResponseEntity<ProductDTO>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Product>(searchedProduct, HttpStatus.OK);
+		return new ResponseEntity<ProductDTO>(searchedProduct, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Product> updateProduct(@PathVariable long id, @RequestBody Product product) {
-		Product originalProduct;
+	public ResponseEntity<ProductDTO> updateProduct(@PathVariable int id, @RequestBody ProductDTO product) {
+		ProductDTO originalProduct;
 		try {
 			originalProduct = productService.getById(id);
 		} catch (ModelNotFoundException e) {
-			return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<ProductDTO>(HttpStatus.NOT_FOUND);
 		}
 		originalProduct.setName(product.getName());
 		originalProduct.setDescription(product.getDescription());
 		originalProduct.setStock(product.getStock());
 
 		productService.update(originalProduct);
-		return new ResponseEntity<Product>(originalProduct, HttpStatus.OK);
+		return new ResponseEntity<ProductDTO>(originalProduct, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Product> deleteProduct(@PathVariable long id) {
+	public ResponseEntity<ProductDTO> deleteProduct(@PathVariable int id) {
 		try {
 			productService.delete(id);
-			return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<ProductDTO>(HttpStatus.NO_CONTENT);
 		} catch (ModelNotFoundException e) {
-			return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<ProductDTO>(HttpStatus.NOT_FOUND);
 		}
 	}
 }

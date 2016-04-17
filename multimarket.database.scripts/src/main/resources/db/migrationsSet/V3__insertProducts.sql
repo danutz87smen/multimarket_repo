@@ -1,1 +1,0 @@
-insert into product values(1,'bere', 'bautura',23);

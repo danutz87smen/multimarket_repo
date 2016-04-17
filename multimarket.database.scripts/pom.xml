@@ -26,7 +26,7 @@
 					<user>postgres</user>
 					<password>postgres</password>
 					<locations>
-						<location>classpath:db/migrationsSet</location>
+						<location>classpath:db/migration</location>
 					</locations>
 				</configuration>
 				<dependencies>

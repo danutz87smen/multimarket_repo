@@ -1,8 +1,8 @@
 package com.dan.services;
 
-import com.dan.model.Product;
+import com.dan.model.ProductDTO;
 
-public interface ProductService extends ModelService<Product> {
+public interface ProductService extends ModelService<ProductDTO> {
 
 	
 	

@@ -13,22 +13,13 @@
 	<dependencies>
 		<dependency>
 			<groupId>dan.home.work</groupId>
-			<artifactId>multimarket.database</artifactId>
+			<artifactId>multimarket.genericDao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -37,112 +28,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.jooq</groupId>
-			<artifactId>jooq</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-		</dependency>
 	</dependencies>
-
-	<profiles>
-		<profile>
-			<id>generate-tables</id>
-			<build>
-				<plugins>
-					<plugin>
-						<!-- Specify the maven code generator plugin -->
-						<groupId>org.jooq</groupId>
-						<artifactId>jooq-codegen-maven</artifactId>
-						<version>3.4.5</version>
-
-						<!-- The plugin should hook into the generate goal -->
-						<executions>
-							<execution>
-								<goals>
-									<goal>generate</goal>
-								</goals>
-							</execution>
-						</executions>
-
-						<!-- Manage the plugin's dependency. In this example, we'll use a PostgreSQL 
-							database -->
-						<dependencies>
-							<dependency>
-								<groupId>org.postgresql</groupId>
-								<artifactId>postgresql</artifactId>
-								<version>9.4-1200-jdbc41</version>
-							</dependency>
-						</dependencies>
-
-						<!-- Specify the plugin configuration. The configuration format is 
-							the same as for the standalone code generator -->
-						<configuration>
-
-							<!-- JDBC connection parameters -->
-							<jdbc>
-								<driver>org.postgresql.Driver</driver>
-								<url>jdbc:postgresql://localhost:5432/postgres</url>
-								<user>postgres</user>
-								<password>postgres</password>
-							</jdbc>
-
-							<!-- Generator parameters -->
-							<generator>
-								<database>
-									<name>org.jooq.util.postgres.PostgresDatabase</name>
-									<includes>product</includes>
-									<excludes></excludes>
-									<inputSchema>public</inputSchema>
-								</database>
-								<target>
-									<packageName>org.jooq</packageName>
-									<directory>target/generated</directory>
-								</target>
-							</generator>
-						</configuration>
-					</plugin>
-				</plugins>
-				<pluginManagement>
-					<plugins>
-						<!--This plugin's configuration is used to store Eclipse m2e settings 
-							only. It has no influence on the Maven build itself. -->
-						<plugin>
-							<groupId>org.eclipse.m2e</groupId>
-							<artifactId>lifecycle-mapping</artifactId>
-							<version>1.0.0</version>
-							<configuration>
-								<lifecycleMappingMetadata>
-									<pluginExecutions>
-										<pluginExecution>
-											<pluginExecutionFilter>
-												<groupId>org.jooq</groupId>
-												<artifactId>
-													jooq-codegen-maven
-												</artifactId>
-												<versionRange>
-													[3.4.5,)
-												</versionRange>
-												<goals>
-													<goal>generate</goal>
-												</goals>
-											</pluginExecutionFilter>
-											<action>
-												<ignore></ignore>
-											</action>
-										</pluginExecution>
-									</pluginExecutions>
-								</lifecycleMappingMetadata>
-							</configuration>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-			</build>
-		</profile>
-	</profiles>
 
 	<build>
 		<pluginManagement>

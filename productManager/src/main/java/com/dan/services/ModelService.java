@@ -8,11 +8,11 @@ public interface ModelService<T> {
 
 	List<T> getAll();
 
-	T getById(long id) throws ModelNotFoundException;
+	T getById(int id) throws ModelNotFoundException;
 
 	void update(T t);
 
-	T insert(T t);
+	T create(T t);
 
-	void delete(long id) throws ModelNotFoundException;
+	void delete(int id) throws ModelNotFoundException;
 }

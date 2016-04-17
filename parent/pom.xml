@@ -32,6 +32,18 @@
 				<artifactId>spring-tx</artifactId>
 				<version>${springframework.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+
+
 			<!-- jackson for json -->
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
