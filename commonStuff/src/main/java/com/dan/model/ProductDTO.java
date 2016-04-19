@@ -1,7 +1,5 @@
 package com.dan.model;
 
-import org.jooq.tables.Feature;
-
 public class ProductDTO {
 	private int id;
 	private String name;
@@ -87,7 +85,7 @@ public class ProductDTO {
 
 	public class ProductFeature {
 		private int id;
-		private Feature feature;
+		private FeatureDTO feature;
 		private ProductDTO product;
 		private String featureValue;
 
@@ -99,11 +97,11 @@ public class ProductDTO {
 			this.id = id;
 		}
 
-		protected Feature getFeature() {
+		protected FeatureDTO getFeature() {
 			return feature;
 		}
 
-		protected void setFeature(Feature feature) {
+		protected void setFeature(FeatureDTO feature) {
 			this.feature = feature;
 		}
 
@@ -127,7 +125,7 @@ public class ProductDTO {
 			super();
 		}
 
-		public ProductFeature(int id, Feature feature, ProductDTO product, String featureValue) {
+		public ProductFeature(int id, FeatureDTO feature, ProductDTO product, String featureValue) {
 			super();
 			this.id = id;
 			this.feature = feature;

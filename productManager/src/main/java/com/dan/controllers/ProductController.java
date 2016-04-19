@@ -39,7 +39,7 @@ public class ProductController {
 
 	@RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<ProductDTO> updateProduct(@PathVariable int id, @RequestBody ProductDTO product) {
-		ProductDTO originalProduct;
+		ProductDTO originalProduct =null;
 		try {
 			originalProduct = productService.getById(id);
 		} catch (ModelNotFoundException e) {
