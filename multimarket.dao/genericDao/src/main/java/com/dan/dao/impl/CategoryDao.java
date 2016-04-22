@@ -1,13 +1,12 @@
 package com.dan.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.jooq.DSLContext;
+import org.jooq.Record;
+import org.jooq.RecordMapper;
 import org.jooq.Sequences;
 import org.jooq.tables.Category;
-
-import org.jooq.tables.records.CategoryRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,22 +17,16 @@ import com.dao.intf.ICategoryDao;
 public class CategoryDao implements ICategoryDao {
 	@Autowired
 	private DSLContext dlsContext;
+	private static final RecordMapper<Record, CategoryDTO> catMapper = (Record record) -> new CategoryDTO(
+			record.getValue(Category.CATEGORY.ID), record.getValue(Category.CATEGORY.NAME),
+			record.getValue(Category.CATEGORY.PARENT_CATEGORY));
 
 	public List<CategoryDTO> getCategories() {
-		List<CategoryDTO> categorys = new ArrayList<>();
-		for (CategoryRecord category : dlsContext.fetch(Category.CATEGORY)) {
-			categorys.add(convertToCategory(category));
-		}
-		return categorys;
+		return dlsContext.fetch(Category.CATEGORY).map(catMapper);
 	}
 
 	public CategoryDTO getCategoryById(int id) {
-		CategoryRecord dbCat = dlsContext.fetchOne(Category.CATEGORY, Category.CATEGORY.ID.eq(id));
-		return convertToCategory(dbCat);
-	}
-
-	private CategoryDTO convertToCategory(CategoryRecord dbCat) {
-		return new CategoryDTO(dbCat.getId(), dbCat.getName());
+		return dlsContext.fetchOne(Category.CATEGORY, Category.CATEGORY.ID.eq(id)).map(catMapper);
 	}
 
 	public boolean updateCategory(CategoryDTO category) {
@@ -58,7 +51,7 @@ public class CategoryDao implements ICategoryDao {
 		dlsContext
 				.insertInto(Category.CATEGORY, Category.CATEGORY.ID, Category.CATEGORY.NAME,
 						Category.CATEGORY.PARENT_CATEGORY)
-				.values(id, category.getName(), category.getParentCategory().getId()).returning(Category.CATEGORY.ID)
+				.values(id, category.getName(), category.getParentCategory()).returning(Category.CATEGORY.ID)
 				.fetchOne();
 		category.setId(id);
 		return category;

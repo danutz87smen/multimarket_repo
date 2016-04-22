@@ -3,7 +3,7 @@ package com.dan.model;
 public class CategoryDTO {
 	private int id;
 	private String name;
-	private CategoryDTO parentCategory;
+	private Integer parentCategory;
 
 	public int getId() {
 		return id;
@@ -21,16 +21,23 @@ public class CategoryDTO {
 		this.name = name;
 	}
 
-	public CategoryDTO getParentCategory() {
+	public Integer getParentCategory() {
 		return parentCategory;
 	}
 
-	public void setParentCategory(CategoryDTO parentCategory) {
+	public void setParentCategory(Integer parentCategory) {
 		this.parentCategory = parentCategory;
 	}
 
-	public CategoryDTO(String name, CategoryDTO parentCategory) {
+	public CategoryDTO(String name, Integer parentCategory) {
 		super();
+		this.name = name;
+		this.parentCategory = parentCategory;
+	}
+
+	public CategoryDTO(int id, String name, Integer parentCategory) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.parentCategory = parentCategory;
 	}

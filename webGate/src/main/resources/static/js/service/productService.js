@@ -1,6 +1,6 @@
 'use strict'
 AppProd.factory('Product', ['$resource', function($resource){
-	return $resource('http://localhost:8080/AngularSpringRest1/products/:id',
+	return $resource('http://localhost:8090/ProductManager/products/:id',
 		{id: '@id'}, 
 		{
 			update: {

@@ -39,7 +39,7 @@ public class ProductController {
 
 	@RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<ProductDTO> updateProduct(@PathVariable int id, @RequestBody ProductDTO product) {
-		ProductDTO originalProduct =null;
+		ProductDTO originalProduct = null;
 		try {
 			originalProduct = productService.getById(id);
 		} catch (ModelNotFoundException e) {
@@ -61,5 +61,11 @@ public class ProductController {
 		} catch (ModelNotFoundException e) {
 			return new ResponseEntity<ProductDTO>(HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@RequestMapping(value = "/products/", method = RequestMethod.POST)
+	public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO product) {
+		productService.create(product);
+		return new ResponseEntity<ProductDTO>(product, HttpStatus.CREATED);
 	}
 }

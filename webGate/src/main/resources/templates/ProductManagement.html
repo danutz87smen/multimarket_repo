@@ -22,8 +22,8 @@
           background-color: yellow;
       }
     </style>
-     <link rel="stylesheet"  type="text/css" th:href="@{/assets/css/bootstrap.css}"></link>
-     <link rel="stylesheet"  type="text/css" th:href="@{/assets/css/app.css}"></link>
+     <link rel="stylesheet"  type="text/css" href="../static/assets/css/bootstrap.css" th:href="@{/assets/css/bootstrap.css}"></link>
+     <link rel="stylesheet"  type="text/css" href="../static/assets/css/app.css" th:href="@{/assets/css/app.css}"></link>
   </head>
   <body ng-app="appProd" class="ng-cloak">
       <div class="generic-container" ng-controller="ProdController as ctrl">
@@ -50,7 +50,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="address">Description</label>
                               <div class="col-md-7">
-                                  <textarea ng-model="ctrl.product.descProd" id="descProd" class="form-control input-sm" placeholder="Enter product description. [This field is validation free]"></textarea>
+                                  <textarea ng-model="ctrl.product.description" id="descProd" class="form-control input-sm" placeholder="Enter product description. [This field is validation free]"></textarea>
                               </div>
                           </div>
                       </div>
@@ -95,11 +95,11 @@
                           <tr ng-repeat="u in ctrl.products">
                               <td><span ng-bind="u.id"></span></td>
                               <td><span ng-bind="u.name"></span></td>
-                              <td><span ng-bind="u.descProd"></span></td>
+                              <td><span ng-bind="u.description"></span></td>
                               <td><span ng-bind="u.stock"></span></td>
                               <td>
 	                              <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Edit</button> 
-	                              <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
+	                              <button type="button" ng-click="ctrl.deleteProduct(u.id)" class="btn btn-danger custom-width">Remove</button>
                               </td>
                           </tr>
                       </tbody>
@@ -110,8 +110,8 @@
       
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
 	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script> 
-      <script th:src="@{/js/productModule.js}"></script>
-      <script th:src="@{/js/service/productService.js}"></script>
-      <script th:src="@{/js/controller/productController.js}"></script>
+      <script src="../static/js/productModule.js" th:src="@{/js/productModule.js}"></script>
+      <script src="../static/js/service/productService.js" th:src="@{/js/service/productService.js}"></script>
+      <script src="../static/js/controller/productController.js" th:src="@{/js/controller/productController.js}"></script>
   </body>
 </html>

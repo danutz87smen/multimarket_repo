@@ -6,13 +6,13 @@ public class ProductDTO {
 	private String description;
 	private int stock;
 	// private List<ProductFeature> features = new ArrayList<>();
-	private int categoryId;
+	private Integer categoryId;
 
 	public ProductDTO() {
 		super();
 	}
 
-	public ProductDTO(int id, String name, String description, int cat, int stock) {
+	public ProductDTO(int id, String name, String description, Integer cat, int stock) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -21,11 +21,11 @@ public class ProductDTO {
 		this.stock = stock;
 	}
 
-	public int getCategoryId() {
+	public Integer getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 

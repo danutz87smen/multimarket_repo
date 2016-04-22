@@ -7,7 +7,6 @@ import org.jooq.Record;
 import org.jooq.RecordMapper;
 import org.jooq.Sequences;
 import org.jooq.tables.Product;
-import org.jooq.tables.records.ProductRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,28 +18,18 @@ public class ProductDao implements IProductDao {
 	@Autowired
 	private DSLContext dlsContext;
 
-//	private static final RecordMapper<ProductRecord, ProductDTO> productMapper = (
-//			ProductRecord record) -> new ProductDTO(record.getId(), record.getName(), record.getDescription(),
-//					record.getCatgoryId(), record.getStock());
-
 	private static final RecordMapper<Record, ProductDTO> prodMapper = (Record record) -> new ProductDTO(
 			record.getValue(Product.PRODUCT.ID), record.getValue(Product.PRODUCT.NAME),
 			record.getValue(Product.PRODUCT.DESCRIPTION), record.getValue(Product.PRODUCT.CATGORY_ID),
 			record.getValue(Product.PRODUCT.STOCK));
 
 	public List<ProductDTO> getProducts() {
-		List<ProductDTO> products = dlsContext.fetch(Product.PRODUCT).map(prodMapper);
-		return products;
+		return dlsContext.fetch(Product.PRODUCT).map(prodMapper);
 	}
 
 	public ProductDTO getProductById(int id) {
 		return dlsContext.fetchOne(Product.PRODUCT, Product.PRODUCT.ID.eq(id)).map(prodMapper);
 	}
-//
-//	private ProductDTO convertToProduct(ProductRecord dbProd) {
-//		return new ProductDTO(dbProd.getId(), dbProd.getName(), dbProd.getDescription(), dbProd.getCatgoryId(),
-//				dbProd.getStock());
-//	}
 
 	public boolean updateProduct(ProductDTO product) {
 		int updateRows = dlsContext.update(Product.PRODUCT).set(Product.PRODUCT.NAME, product.getName())

@@ -42,16 +42,22 @@
 				<artifactId>spring-context</artifactId>
 				<version>${springframework.version}</version>
 			</dependency>
-<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-			<version>1.3.3.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<version>1.3.0.RELEASE</version>
-		</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-thymeleaf</artifactId>
+				<version>1.3.3.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-devtools</artifactId>
+				<version>1.3.0.RELEASE</version>
+			</dependency>
 
 			<!-- jackson for json -->
 			<dependency>
@@ -59,11 +65,11 @@
 				<artifactId>jackson-databind</artifactId>
 				<version>${jackson.version}</version>
 			</dependency>
-	<!-- <dependency> -->
-	<!-- <groupId>javax.servlet</groupId> -->
-	<!-- <artifactId>jstl</artifactId> -->
-	<!-- <version>1.2</version> -->
-	<!-- </dependency> -->
+			<!-- <dependency> -->
+			<!-- <groupId>javax.servlet</groupId> -->
+			<!-- <artifactId>jstl</artifactId> -->
+			<!-- <version>1.2</version> -->
+			<!-- </dependency> -->
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
@@ -105,6 +111,12 @@
 				<version>1.3.3.RELEASE</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
