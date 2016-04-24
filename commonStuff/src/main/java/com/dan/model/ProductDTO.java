@@ -20,6 +20,14 @@ public class ProductDTO {
 		this.categoryId = cat;
 		this.stock = stock;
 	}
+	
+	public ProductDTO( String name, String description, Integer cat, int stock) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.categoryId = cat;
+		this.stock = stock;
+	}
 
 	public Integer getCategoryId() {
 		return categoryId;
