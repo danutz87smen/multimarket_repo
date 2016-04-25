@@ -1,15 +1,26 @@
 package com.dan.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProductDTO {
 	private int id;
 	private String name;
 	private String description;
 	private int stock;
-	// private List<ProductFeature> features = new ArrayList<>();
+	private List<ProductFeatureDTO> features = new ArrayList<>();
 	private Integer categoryId;
 
 	public ProductDTO() {
 		super();
+	}
+
+	public List<ProductFeatureDTO> getFeatures() {
+		return features;
+	}
+
+	public void setFeatures(List<ProductFeatureDTO> features) {
+		this.features = features;
 	}
 
 	public ProductDTO(int id, String name, String description, Integer cat, int stock) {
@@ -89,85 +100,5 @@ public class ProductDTO {
 		if (id != other.id)
 			return false;
 		return true;
-	}
-
-	public class ProductFeature {
-		private int id;
-		private FeatureDTO feature;
-		private ProductDTO product;
-		private String featureValue;
-
-		protected int getId() {
-			return id;
-		}
-
-		protected void setId(int id) {
-			this.id = id;
-		}
-
-		protected FeatureDTO getFeature() {
-			return feature;
-		}
-
-		protected void setFeature(FeatureDTO feature) {
-			this.feature = feature;
-		}
-
-		protected ProductDTO getProduct() {
-			return product;
-		}
-
-		protected void setProduct(ProductDTO product) {
-			this.product = product;
-		}
-
-		protected String getFeatureValue() {
-			return featureValue;
-		}
-
-		protected void setFeatureValue(String featureValue) {
-			this.featureValue = featureValue;
-		}
-
-		public ProductFeature() {
-			super();
-		}
-
-		public ProductFeature(int id, FeatureDTO feature, ProductDTO product, String featureValue) {
-			super();
-			this.id = id;
-			this.feature = feature;
-			this.product = product;
-			this.featureValue = featureValue;
-		}
-
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + getOuterType().hashCode();
-			result = prime * result + id;
-			return result;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			ProductFeature other = (ProductFeature) obj;
-			if (!getOuterType().equals(other.getOuterType()))
-				return false;
-			if (id != other.id)
-				return false;
-			return true;
-		}
-
-		private ProductDTO getOuterType() {
-			return ProductDTO.this;
-		}
 	}
 }

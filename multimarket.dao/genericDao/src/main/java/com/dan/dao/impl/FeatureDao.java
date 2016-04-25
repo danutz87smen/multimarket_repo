@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dan.model.FeatureDTO;
+import com.dan.model.ProductFeatureDTO;
+import com.dan.util.DTOMappers;
 import com.dao.intf.IFeatureDao;
 
 @Repository
@@ -87,5 +89,11 @@ public class FeatureDao implements IFeatureDao {
 				.on(ProductFeature.PRODUCT_FEATURE.FEATURE.eq(Feature.FEATURE.ID))
 				.where(ProductFeature.PRODUCT_FEATURE.PRODUCT.eq(productId)).fetch().map(featureMapper);
 		return features;
+	}
+	
+	@Override
+	public List<ProductFeatureDTO> getProductFeatures(int productId) {
+		return dlsContext.select().from(ProductFeature.PRODUCT_FEATURE.join(Feature.FEATURE).onKey())
+				.where(ProductFeature.PRODUCT_FEATURE.PRODUCT.eq(productId)).fetch().map(DTOMappers.productFeaturesMapper);
 	}
 }

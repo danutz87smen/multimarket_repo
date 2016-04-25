@@ -3,6 +3,7 @@ package com.dao.intf;
 import java.util.List;
 
 import com.dan.model.ProductDTO;
+import com.dan.model.ProductFeatureDTO;
 
 public interface IProductDao {
 
@@ -17,4 +18,8 @@ public interface IProductDao {
 	boolean deleteProduct(ProductDTO product);
 
 	void deleteProductById(int id);
+
+	List<ProductDTO> getProductByCategoryId(int categoryId);
+
+	void addProductFeatures(List<ProductFeatureDTO> features);
 }

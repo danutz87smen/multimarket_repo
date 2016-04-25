@@ -20,6 +20,12 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
+	@RequestMapping(value = "/category/{id}/products/", method = RequestMethod.GET)
+	public ResponseEntity<List<ProductDTO>> getProductsByCategoryId(int categoryId) {
+		List<ProductDTO> products = productService.getProductsByCategoryId(categoryId);
+		return new ResponseEntity<List<ProductDTO>>(products, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/products/", method = RequestMethod.GET)
 	public ResponseEntity<List<ProductDTO>> getAllProducts() {
 		List<ProductDTO> products = productService.getAll();
@@ -48,7 +54,8 @@ public class ProductController {
 		originalProduct.setName(product.getName());
 		originalProduct.setDescription(product.getDescription());
 		originalProduct.setStock(product.getStock());
-
+		originalProduct.setCategoryId(product.getCategoryId());
+		
 		productService.update(originalProduct);
 		return new ResponseEntity<ProductDTO>(originalProduct, HttpStatus.OK);
 	}

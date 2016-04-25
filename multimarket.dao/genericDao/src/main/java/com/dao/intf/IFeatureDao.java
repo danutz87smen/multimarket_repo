@@ -3,6 +3,7 @@ package com.dao.intf;
 import java.util.List;
 
 import com.dan.model.FeatureDTO;
+import com.dan.model.ProductFeatureDTO;
 
 /**
  * Feature DAO.
@@ -65,4 +66,11 @@ public interface IFeatureDao {
 	 * @return
 	 */
 	List<FeatureDTO> getFeaturesByProductId(int productId);
+	
+	/**
+	 * Get features for given product id.
+	 * @param productId
+	 * @return
+	 */
+	List<ProductFeatureDTO> getProductFeatures(int productId);
 }
