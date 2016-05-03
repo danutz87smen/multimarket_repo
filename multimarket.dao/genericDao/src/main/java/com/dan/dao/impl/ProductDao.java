@@ -9,6 +9,7 @@ import org.jooq.tables.Category;
 import org.jooq.tables.Product;
 import org.jooq.tables.ProductFeature;
 import org.jooq.tables.records.ProductFeatureRecord;
+import org.jooq.tables.records.ProductRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,7 +28,11 @@ public class ProductDao implements IProductDao {
 	}
 
 	public ProductDTO getProductById(int id) {
-		return dlsContext.fetchOne(Product.PRODUCT, Product.PRODUCT.ID.eq(id)).map(DTOMappers.prodMapper);
+		ProductRecord fetchOne = dlsContext.fetchOne(Product.PRODUCT, Product.PRODUCT.ID.eq(id));
+		if (fetchOne == null){
+			return null;
+		}
+		return fetchOne.map(DTOMappers.prodMapper);
 	}
 
 	public boolean updateProduct(ProductDTO product) {

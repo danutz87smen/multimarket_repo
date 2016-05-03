@@ -7,6 +7,7 @@ import org.jooq.Record;
 import org.jooq.RecordMapper;
 import org.jooq.Sequences;
 import org.jooq.tables.Category;
+import org.jooq.tables.records.CategoryRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,7 +27,11 @@ public class CategoryDao implements ICategoryDao {
 	}
 
 	public CategoryDTO getCategoryById(int id) {
-		return dlsContext.fetchOne(Category.CATEGORY, Category.CATEGORY.ID.eq(id)).map(catMapper);
+		 CategoryRecord fetchOne = dlsContext.fetchOne(Category.CATEGORY, Category.CATEGORY.ID.eq(id));
+		if(fetchOne == null){
+			return null;
+		}
+		 return fetchOne.map(catMapper);
 	}
 
 	public boolean updateCategory(CategoryDTO category) {
