@@ -11,11 +11,6 @@ import com.dan.configurations.filters.SameOriginFilter;
 @ComponentScan
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 	 
-	  
-	    @Override
-	    protected Class<?>[] getRootConfigClasses() {
-	        return new Class[] { MvcConfiguration.class };
-	    }
 	   
 	    @Override
 	    protected Class<?>[] getServletConfigClasses() {
@@ -32,5 +27,11 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	        Filter [] singleton = { new SameOriginFilter() };
 	        return singleton;
 	    }
+
+		@Override
+		protected Class<?>[] getRootConfigClasses() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	  
 }
