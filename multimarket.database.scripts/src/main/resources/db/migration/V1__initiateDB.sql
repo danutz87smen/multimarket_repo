@@ -23,7 +23,7 @@ create table PRODUCT(
  	feature  int REFERENCES FEATURE(ID),
  	feature_value varchar(200)
  );
- 
+ /*
  create table ORDER_LIST (
  	ID int primary key,
  	account_id int,
@@ -36,15 +36,17 @@ create table PRODUCT(
  create table ORDER_ITEM (
  	ID int primary key,
  	product_id int references product(id),
+ 	order_id int references order_list(id),
  	quantity int,
+ 	total bigint, 
  	tvavalue int8,
  	price int8
 );
-
+ create SEQUENCE order_SEQ start 1;
+ create SEQUENCE order_item_SEQ start 1;
+ */
 
  create SEQUENCE product_SEQ start 1;
  create SEQUENCE feature_SEQ start 1;
  create SEQUENCE product_feature_SEQ start 1;
  create SEQUENCE category_SEQ start 1;
- create SEQUENCE order_SEQ start 1;
- create SEQUENCE order_item_SEQ start 1;

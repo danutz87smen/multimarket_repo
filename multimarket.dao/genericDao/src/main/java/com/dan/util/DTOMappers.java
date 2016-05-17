@@ -3,12 +3,10 @@ package com.dan.util;
 import org.jooq.Record;
 import org.jooq.RecordMapper;
 import org.jooq.tables.Feature;
-import org.jooq.tables.OrderList;
 import org.jooq.tables.Product;
 import org.jooq.tables.ProductFeature;
 
 import com.dan.model.FeatureDTO;
-import com.dan.model.OrderListDTO;
 import com.dan.model.ProductDTO;
 import com.dan.model.ProductFeatureDTO;
 
@@ -29,12 +27,25 @@ public class DTOMappers {
 		return productFeature;
 	};
 
-	public static final RecordMapper<Record, OrderListDTO> orderMapper = (Record record) -> {
-		OrderListDTO orderList = new OrderListDTO();
-		orderList.setId(record.getValue(OrderList.ORDER_LIST.ID));
-		orderList.setOrderDate(record.getValue(OrderList.ORDER_LIST.ORDER_DATE));
-		orderList.setAccountId(record.getValue(OrderList.ORDER_LIST.ACCOUNT_ID));
-		return orderList;
-	};
+//	public static final RecordMapper<Record, OrderListDTO> orderMapper = (Record record) -> {
+//		OrderListDTO orderList = new OrderListDTO();
+//		orderList.setId(record.getValue(OrderList.ORDER_LIST.ID));
+//		orderList.setOrderDate(record.getValue(OrderList.ORDER_LIST.ORDER_DATE));
+//		orderList.setAccountId(record.getValue(OrderList.ORDER_LIST.ACCOUNT_ID));
+//		return orderList;
+//	};
+//	
+//	public static final RecordMapper<Record, OrderItemDTO> orderItemMapper = (Record record) -> {
+//		OrderItemDTO item = new OrderItemDTO();
+//		item.setId(record.getValue(OrderItem.ORDER_ITEM.ID));
+//		item.setQuantity(record.getValue(OrderItem.ORDER_ITEM.QUANTITY));
+//		item.setTotal(record.getValue(OrderItem.ORDER_ITEM.TOTAL));
+//		item.settVAValue(record.getValue(OrderItem.ORDER_ITEM.TVAVALUE));
+//		ProductDTO product = new ProductDTO(record.getValue(Product.PRODUCT.ID),
+//				record.getValue(Product.PRODUCT.NAME),record.getValue(Product.PRODUCT.DESCRIPTION),
+//				record.getValue(Product.PRODUCT.CATGORY_ID), record.getValue(Product.PRODUCT.STOCK));
+//		item.setProduct(product);
+//		return item;
+//	};
 
 }
