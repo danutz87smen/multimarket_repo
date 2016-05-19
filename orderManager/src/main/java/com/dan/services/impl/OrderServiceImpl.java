@@ -1,11 +1,16 @@
 package com.dan.services.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import org.springframework.amqp.AmqpException;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.remoting.client.AmqpClientInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +21,7 @@ import com.dan.amqp.OrderAmqpConfig;
 import com.dan.entities.Order;
 import com.dan.repositories.OrderRepository;
 import com.dan.services.OrderService;
+import com.dan.utils.AmqpConstants;
 
 @Service
 @Transactional
@@ -30,9 +36,21 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public Order getById(long id) {
-		//coada deja exista
 		List<Integer> list = new ArrayList<>();
-		rabbitTamplate.convertAndSend(OrderAmqpConfig.SENDING_TOPIC, list);
+		list.add(1);
+		
+		Object receivedMessage = rabbitTamplate.convertSendAndReceive(AmqpConstants.PRODUCTS_REQUEST_BINDING, list /*, new MessagePostProcessor() {
+			public Message postProcessMessage(Message message) throws AmqpException {
+				message.getMessageProperties().setReplyTo(AmqpConstants.PRODUCTS_RESPONSE_QUEUE);
+				try {
+					message.getMessageProperties().setCorrelationId(UUID.randomUUID().toString().getBytes("UTF-8"));
+				}
+				catch (UnsupportedEncodingException e) {
+					throw new AmqpException(e);
+				}
+				return message;
+			}
+		}*/);
 		//String foo = (String) rabbitTamplate.receiveAndConvert("myqueue");
 		return repository.findOne(id);
 	}
