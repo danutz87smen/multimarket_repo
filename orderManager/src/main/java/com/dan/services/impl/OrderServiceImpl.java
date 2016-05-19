@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.remoting.client.AmqpClientInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dan.amqp.OrderAmqpConfig;
 import com.dan.entities.Order;
 import com.dan.repositories.OrderRepository;
 import com.dan.services.OrderService;
@@ -29,8 +31,9 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public Order getById(long id) {
 		//coada deja exista
-		rabbitTamplate.convertAndSend("myqueue", "test dan");
-		String foo = (String) rabbitTamplate.receiveAndConvert("myqueue");
+		List<Integer> list = new ArrayList<>();
+		rabbitTamplate.convertAndSend(OrderAmqpConfig.SENDING_TOPIC, list);
+		//String foo = (String) rabbitTamplate.receiveAndConvert("myqueue");
 		return repository.findOne(id);
 	}
 
