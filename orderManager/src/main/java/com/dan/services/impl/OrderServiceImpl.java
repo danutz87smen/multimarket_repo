@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
 		List<Integer> list = new ArrayList<>();
 		list.add(1);
 		
-		Object receivedMessage = rabbitTamplate.convertSendAndReceive(AmqpConstants.PRODUCTS_REQUEST_BINDING, list /*, new MessagePostProcessor() {
+		Object receivedMessage = rabbitTamplate.convertSendAndReceive(AmqpConstants.PRODUCTS_REQUEST_BINDING, list , new MessagePostProcessor() {
 			public Message postProcessMessage(Message message) throws AmqpException {
 				message.getMessageProperties().setReplyTo(AmqpConstants.PRODUCTS_RESPONSE_QUEUE);
 				try {
@@ -50,7 +50,7 @@ public class OrderServiceImpl implements OrderService {
 				}
 				return message;
 			}
-		}*/);
+		});
 		//String foo = (String) rabbitTamplate.receiveAndConvert("myqueue");
 		return repository.findOne(id);
 	}

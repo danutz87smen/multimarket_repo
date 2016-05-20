@@ -19,7 +19,7 @@ public class ProductAmqpConfig extends GenericAmqpConfig  {
 	    @Bean 
 		public SimpleMessageListenerContainer messageListenerContainer() {
 			SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory());		
-			container.setQueues(requestProductQueue());
+			container.setQueueNames(AmqpConstants.PRODUCTS_REQUEST_QUEUE);
 			container.setMessageListener(messageListenerAdapter());
 			container.setAcknowledgeMode(AcknowledgeMode.AUTO);
 			return container;
@@ -29,7 +29,10 @@ public class ProductAmqpConfig extends GenericAmqpConfig  {
 		
 		@Bean 
 		public MessageListenerAdapter messageListenerAdapter() {
-			return new MessageListenerAdapter(productHandler(), jsonMessageConverter());		
+			 MessageListenerAdapter adapter = new MessageListenerAdapter(productHandler(), 
+					jsonMessageConverter());
+			 adapter.setResponseRoutingKey(AmqpConstants.PRODUCTS_RESPONSE_QUEUE);
+			 return adapter;
 		}
 		
 		@Bean
@@ -38,10 +41,10 @@ public class ProductAmqpConfig extends GenericAmqpConfig  {
 		}
 	    
 		
-	    @Bean
-	    public Queue requestProductQueue() {
-	       return new Queue(AmqpConstants.PRODUCTS_REQUEST_QUEUE);
-	    }
+//	    @Bean
+//	    public Queue requestProductQueue() {
+//	       return new Queue(AmqpConstants.PRODUCTS_REQUEST_QUEUE);
+//	    }
 	    
 	    @Bean
 		public TopicExchange productExchange() {
