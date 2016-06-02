@@ -23,7 +23,7 @@ public interface IFeatureDao {
 	 *            of searched feature
 	 * @return searched feature
 	 */
-	FeatureDTO getFeatureById(int id);
+	FeatureDTO getFeatureById(long id);
 
 	/**
 	 * Update an existing feature.
@@ -57,7 +57,7 @@ public interface IFeatureDao {
 	 * 
 	 * @param id
 	 */
-	void deleteFeatureById(int id);
+	void deleteFeatureById(long id);
 
 	/**
 	 * Get a list of features that belongs to given product id.
@@ -65,12 +65,12 @@ public interface IFeatureDao {
 	 * @param productId
 	 * @return
 	 */
-	List<FeatureDTO> getFeaturesByProductId(int productId);
+	List<FeatureDTO> getFeaturesByProductId(long productId);
 	
 	/**
 	 * Get features for given product id.
 	 * @param productId
 	 * @return
 	 */
-	List<ProductFeatureDTO> getProductFeatures(int productId);
+	List<ProductFeatureDTO> getProductFeatures(long productId);
 }

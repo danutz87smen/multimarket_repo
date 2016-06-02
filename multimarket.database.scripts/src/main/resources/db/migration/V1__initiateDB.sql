@@ -1,50 +1,29 @@
  create table CATEGORY(
- 	ID int primary key,
+ 	ID int8 primary key,
  	name varchar(200),
- 	parent_category int REFERENCES CATEGORY(ID) 
+ 	parent_category int8 REFERENCES CATEGORY(ID) 
  );
  
 create table PRODUCT(
-	ID int primary key,
+	ID int8 primary key,
     NAME varchar(100) not null,
     DESCRIPTION varchar(300),
-    CATGORY_ID int REFERENCES CATEGORY(ID),
-    STOCK int not null
+    CATGORY_ID int8 REFERENCES CATEGORY(ID),
+    STOCK int not null,
+    PRICE int8
  );
  
  create table FEATURE(
- 	ID int primary key,
+ 	ID int8 primary key,
  	name varchar(200)
  );
  
  create table PRODUCT_FEATURE(
- 	ID int primary key, 
- 	product int REFERENCES PRODUCT(ID),
- 	feature  int REFERENCES FEATURE(ID),
+ 	ID int8 primary key, 
+ 	product int8 REFERENCES PRODUCT(ID),
+ 	feature  int8 REFERENCES FEATURE(ID),
  	feature_value varchar(200)
  );
- /*
- create table ORDER_LIST (
- 	ID int primary key,
- 	account_id int,
- 	order_date timestamp,
- 	tvavalue int8,
- 	total_price int8
-);
-
-
- create table ORDER_ITEM (
- 	ID int primary key,
- 	product_id int references product(id),
- 	order_id int references order_list(id),
- 	quantity int,
- 	total bigint, 
- 	tvavalue int8,
- 	price int8
-);
- create SEQUENCE order_SEQ start 1;
- create SEQUENCE order_item_SEQ start 1;
- */
 
  create SEQUENCE product_SEQ start 1;
  create SEQUENCE feature_SEQ start 1;

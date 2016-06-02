@@ -1,58 +1,59 @@
 package com.dan.services.impl;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
+import java.util.Set;
 
-import org.springframework.amqp.AmqpException;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessagePostProcessor;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.remoting.client.AmqpClientInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dan.amqp.OrderAmqpConfig;
+import com.dan.entities.Item;
 import com.dan.entities.Order;
+import com.dan.model.ProductDTO;
 import com.dan.repositories.OrderRepository;
+import com.dan.services.AmqpProductService;
 import com.dan.services.OrderService;
-import com.dan.utils.AmqpConstants;
 
 @Service
 @Transactional
 public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private OrderRepository repository;
-	
 	@Autowired
-	private RabbitTemplate rabbitTamplate;
+	private AmqpProductService prodService;
 	
 	private Map<String, Order>orders = new HashMap<>();
 
 	@Override
 	public Order getById(long id) {
-		List<Integer> list = new ArrayList<>();
-		list.add(1);
-		
-		Object receivedMessage = rabbitTamplate.convertSendAndReceive(AmqpConstants.PRODUCTS_REQUEST_BINDING, list , new MessagePostProcessor() {
-			public Message postProcessMessage(Message message) throws AmqpException {
-				message.getMessageProperties().setReplyTo(AmqpConstants.PRODUCTS_RESPONSE_QUEUE);
-				try {
-					message.getMessageProperties().setCorrelationId(UUID.randomUUID().toString().getBytes("UTF-8"));
-				}
-				catch (UnsupportedEncodingException e) {
-					throw new AmqpException(e);
-				}
-				return message;
+		Order order = repository.findOne(id);
+		if (order == null){
+			return new Order();
+		}
+		addProductsToItems(order.getItems());
+		return order;
+	}
+	
+	private void addProductsToItems(List<Item> items){
+		Set<Long> prodIdSet = new HashSet<>();
+		for (Item item : items){
+			Long productId = item.getProductId();
+			if(productId != null){
+				prodIdSet.add(productId);
 			}
-		});
-		//String foo = (String) rabbitTamplate.receiveAndConvert("myqueue");
-		return repository.findOne(id);
+		}
+		Map<Long, ProductDTO> productsMap = prodService.getProductsByIds(prodIdSet);
+		if (productsMap == null){
+			return;
+		}
+		for (Item item : items){
+			item.setProduct(productsMap.get(item.getProductId()));
+		}
 	}
 
 	@Override

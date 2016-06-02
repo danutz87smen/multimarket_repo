@@ -6,7 +6,7 @@
 		<artifactId>multimarket.parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>multimarket.genericDao</artifactId>
+	<artifactId>multimarket.productDao</artifactId>
 
 	<dependencies>
 		<dependency>

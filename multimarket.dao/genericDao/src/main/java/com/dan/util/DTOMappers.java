@@ -15,7 +15,7 @@ public class DTOMappers {
 	public static final RecordMapper<Record, ProductDTO> prodMapper = (Record record) -> new ProductDTO(
 			record.getValue(Product.PRODUCT.ID), record.getValue(Product.PRODUCT.NAME),
 			record.getValue(Product.PRODUCT.DESCRIPTION), record.getValue(Product.PRODUCT.CATGORY_ID),
-			record.getValue(Product.PRODUCT.STOCK));
+			record.getValue(Product.PRODUCT.STOCK), record.getValue(Product.PRODUCT.PRICE));
 
 	public static final RecordMapper<Record, ProductFeatureDTO> productFeaturesMapper = (Record record) -> {
 		ProductFeatureDTO productFeature = new ProductFeatureDTO();

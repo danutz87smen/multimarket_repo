@@ -15,7 +15,7 @@ public class ProductDaoTest {
 
 	@Autowired
 	private ProductDao dao;
-	private ProductDTO initialProduct = new ProductDTO("name", "description", null, 12);
+	private ProductDTO initialProduct = new ProductDTO("name", "description", null, 12, 22);
 	private static final String NEW_NAME = "new Name";
 
 	@Test

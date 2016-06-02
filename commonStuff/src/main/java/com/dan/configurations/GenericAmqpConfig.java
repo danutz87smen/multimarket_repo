@@ -29,13 +29,13 @@ public abstract class GenericAmqpConfig  {
 	    @Bean
 	    public RabbitTemplate rabbitTemplate() {
 	        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
-	        rabbitTemplate.setMessageConverter(jsonMessageConverter());
+	      //  rabbitTemplate.setMessageConverter(jsonMessageConverter());
 	        setTemplateSeettings(rabbitTemplate);
 			return rabbitTemplate;
 	    }
-	    
-		@Bean
-		public MessageConverter jsonMessageConverter() {
-			return new JsonMessageConverter();
-		}
+//	    
+//		@Bean
+//		public MessageConverter jsonMessageConverter() {
+//			return new JsonMessageConverter();
+//		}
 }

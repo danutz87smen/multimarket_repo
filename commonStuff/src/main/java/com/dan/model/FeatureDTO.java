@@ -1,14 +1,20 @@
 package com.dan.model;
 
-public class FeatureDTO {
-	private int id;
+import java.io.Serializable;
+
+public class FeatureDTO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private long id;
 	private String name;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -24,7 +30,7 @@ public class FeatureDTO {
 		super();
 	}
 
-	public FeatureDTO(int id, String name) {
+	public FeatureDTO(long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -34,7 +40,7 @@ public class FeatureDTO {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 
