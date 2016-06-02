@@ -29,8 +29,8 @@ public class ProductHandler {
 		this.productService = productService;
 	}
 
-	@RabbitListener(bindings = @QueueBinding(value = @Queue(value = AmqpConstants.PRODUCTS_REQUEST_QUEUE) ,
-			exchange = @Exchange(value = AmqpConstants.PRODUCTS_REQUEST_EXCHANGE, type = ExchangeTypes.TOPIC) , 
+	@RabbitListener(bindings = @QueueBinding(value = @Queue(value = AmqpConstants.PRODUCTS_REQUEST_QUEUE, durable="true" ) ,
+			exchange = @Exchange(value = AmqpConstants.PRODUCTS_REQUEST_EXCHANGE, type = ExchangeTypes.TOPIC, durable="true") , 
 			key = AmqpConstants.PRODUCTS_REQUEST_ROUTING_KEY) )
 	public Map<Long, ProductDTO> handleMessage(Set<Long> productIds) {
 		return productService.getProductsByIds(productIds);
