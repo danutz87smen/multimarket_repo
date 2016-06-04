@@ -22,7 +22,7 @@ public interface ICategoryDao {
 	 *            of searched category
 	 * @return searched category
 	 */
-	CategoryDTO getCategoryById(int id);
+	CategoryDTO getCategoryById(long id);
 
 	/**
 	 * Update a specific category
@@ -54,5 +54,5 @@ public interface ICategoryDao {
 	 * 
 	 * @param id
 	 */
-	void deleteCategoryById(int id);
+	void deleteCategoryById(long id);
 }

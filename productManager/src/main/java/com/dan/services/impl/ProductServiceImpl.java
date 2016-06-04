@@ -1,6 +1,8 @@
 package com.dan.services.impl;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,5 +50,10 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductDTO> getProductsByCategoryId(int categoryId) {
 		return dao.getProductByCategoryId(categoryId);
+	}
+
+	@Override
+	public Map<Long, ProductDTO> getProductsByIds(Set<Long> ids) {
+		return dao.getProductsByIds(ids);
 	}
 }

@@ -37,7 +37,7 @@ public class FeatureDao implements IFeatureDao {
 	 * @see com.dao.intf.IFeatureDao#getFeatureById(int)
 	 */
 	@Override
-	public FeatureDTO getFeatureById(int id) {
+	public FeatureDTO getFeatureById(long id) {
 		return dlsContext.fetchOne(Feature.FEATURE, Feature.FEATURE.ID.eq(id)).map(featureMapper);
 	}
 
@@ -63,7 +63,7 @@ public class FeatureDao implements IFeatureDao {
 	/* (non-Javadoc)
 	 * @see com.dao.intf.IFeatureDao#deleteFeatureById(int)
 	 */
-	public void deleteFeatureById(int id) {
+	public void deleteFeatureById(long id) {
 		dlsContext.delete(Feature.FEATURE).where(Feature.FEATURE.ID.eq(id)).execute();
 	}
 
@@ -72,7 +72,7 @@ public class FeatureDao implements IFeatureDao {
 	 */
 	@Override
 	public FeatureDTO createFeature(FeatureDTO feature) {
-		int id = dlsContext.nextval(Sequences.FEATURE_SEQ).intValue();
+		long id = dlsContext.nextval(Sequences.FEATURE_SEQ).intValue();
 		dlsContext.insertInto(Feature.FEATURE, Feature.FEATURE.ID, Feature.FEATURE.NAME).values(id, feature.getName())
 				.returning(Feature.FEATURE.ID).fetchOne();
 		feature.setId(id);
@@ -83,7 +83,7 @@ public class FeatureDao implements IFeatureDao {
 	 * @see com.dao.intf.IFeatureDao#getFeaturesByProductId(int)
 	 */
 	@Override
-	public List<FeatureDTO> getFeaturesByProductId(int productId) {
+	public List<FeatureDTO> getFeaturesByProductId(long productId) {
 		List<FeatureDTO> features = dlsContext.select(Feature.FEATURE.ID, Feature.FEATURE.NAME)
 				.from(ProductFeature.PRODUCT_FEATURE).join(Feature.FEATURE)
 				.on(ProductFeature.PRODUCT_FEATURE.FEATURE.eq(Feature.FEATURE.ID))
@@ -92,7 +92,7 @@ public class FeatureDao implements IFeatureDao {
 	}
 	
 	@Override
-	public List<ProductFeatureDTO> getProductFeatures(int productId) {
+	public List<ProductFeatureDTO> getProductFeatures(long productId) {
 		return dlsContext.select().from(ProductFeature.PRODUCT_FEATURE.join(Feature.FEATURE).onKey())
 				.where(ProductFeature.PRODUCT_FEATURE.PRODUCT.eq(productId)).fetch().map(DTOMappers.productFeaturesMapper);
 	}

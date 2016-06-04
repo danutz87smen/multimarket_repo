@@ -1,17 +1,22 @@
 package com.dan.model;
 
+import java.io.Serializable;
 
-public class ProductFeatureDTO {
-		private int id;
-		private int productId;
+public class ProductFeatureDTO implements Serializable {
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+		private long id;
+		private long productId;
 		private FeatureDTO feature;
 		private String featureValue;
 
-		public int getId() {
+		public long getId() {
 			return id;
 		}
 
-		public void setId(int id) {
+		public void setId(long id) {
 			this.id = id;
 		}
 
@@ -23,11 +28,11 @@ public class ProductFeatureDTO {
 			this.feature = feature;
 		}
 
-		public int getProduct() {
+		public long getProduct() {
 			return productId;
 		}
 
-		public void setProduct(int product) {
+		public void setProduct(long product) {
 			this.productId = product;
 		}
 

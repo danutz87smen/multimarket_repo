@@ -1,15 +1,21 @@
 package com.dan.model;
 
-public class CategoryDTO {
-	private int id;
-	private String name;
-	private Integer parentCategory;
+import java.io.Serializable;
 
-	public int getId() {
+public class CategoryDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private long id;
+	private String name;
+	private Long parentCategory;
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -21,28 +27,28 @@ public class CategoryDTO {
 		this.name = name;
 	}
 
-	public Integer getParentCategory() {
+	public Long getParentCategory() {
 		return parentCategory;
 	}
 
-	public void setParentCategory(Integer parentCategory) {
+	public void setParentCategory(Long parentCategory) {
 		this.parentCategory = parentCategory;
 	}
 
-	public CategoryDTO(String name, Integer parentCategory) {
+	public CategoryDTO(String name, Long parentCategory) {
 		super();
 		this.name = name;
 		this.parentCategory = parentCategory;
 	}
 
-	public CategoryDTO(int id, String name, Integer parentCategory) {
+	public CategoryDTO(long id, String name, Long parentCategory) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.parentCategory = parentCategory;
 	}
 
-	public CategoryDTO(int id, String name) {
+	public CategoryDTO(long id, String name) {
 		this.id = id;
 		this.name = name;
 	}
@@ -55,7 +61,9 @@ public class CategoryDTO {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((parentCategory == null) ? 0 : parentCategory.hashCode());
 		return result;
 	}
 
@@ -70,6 +78,17 @@ public class CategoryDTO {
 		CategoryDTO other = (CategoryDTO) obj;
 		if (id != other.id)
 			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (parentCategory == null) {
+			if (other.parentCategory != null)
+				return false;
+		} else if (!parentCategory.equals(other.parentCategory))
+			return false;
 		return true;
 	}
+
 }

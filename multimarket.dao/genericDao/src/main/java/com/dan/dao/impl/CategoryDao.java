@@ -26,7 +26,7 @@ public class CategoryDao implements ICategoryDao {
 		return dlsContext.fetch(Category.CATEGORY).map(catMapper);
 	}
 
-	public CategoryDTO getCategoryById(int id) {
+	public CategoryDTO getCategoryById(long id) {
 		 CategoryRecord fetchOne = dlsContext.fetchOne(Category.CATEGORY, Category.CATEGORY.ID.eq(id));
 		if(fetchOne == null){
 			return null;
@@ -46,13 +46,13 @@ public class CategoryDao implements ICategoryDao {
 		return deletedRows > 0;
 	}
 
-	public void deleteCategoryById(int id) {
+	public void deleteCategoryById(long id) {
 		dlsContext.delete(Category.CATEGORY).where(Category.CATEGORY.ID.eq(id)).execute();
 	}
 
 	@Override
 	public CategoryDTO createCategory(CategoryDTO category) {
-		int id = dlsContext.nextval(Sequences.CATEGORY_SEQ).intValue();
+		long id = dlsContext.nextval(Sequences.CATEGORY_SEQ).intValue();
 		dlsContext
 				.insertInto(Category.CATEGORY, Category.CATEGORY.ID, Category.CATEGORY.NAME,
 						Category.CATEGORY.PARENT_CATEGORY)

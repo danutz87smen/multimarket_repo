@@ -9,7 +9,8 @@ create table if not exists PRODUCT(
     NAME varchar(100) not null,
     DESCRIPTION varchar(300),
     CATGORY_ID int REFERENCES CATEGORY(ID),
-    STOCK int not null
+    STOCK int not null,
+    PRICE int8
  );
  
  create table if not exists FEATURE(

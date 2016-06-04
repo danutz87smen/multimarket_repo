@@ -1,15 +1,21 @@
 package com.dan.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDTO {
-	private int id;
+public class ProductDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private long id;
 	private String name;
 	private String description;
 	private int stock;
 	private List<ProductFeatureDTO> features = new ArrayList<>();
-	private Integer categoryId;
+	private Long categoryId;
+	private long price;
 
 	public ProductDTO() {
 		super();
@@ -23,36 +29,38 @@ public class ProductDTO {
 		this.features = features;
 	}
 
-	public ProductDTO(int id, String name, String description, Integer cat, int stock) {
+	public ProductDTO(long id, String name, String description, Long cat, int stock, long price) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.categoryId = cat;
 		this.stock = stock;
+		this.price = price;
 	}
-	
-	public ProductDTO( String name, String description, Integer cat, int stock) {
+
+	public ProductDTO(String name, String description, Long cat, int stock, long price) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.categoryId = cat;
 		this.stock = stock;
+		this.price = price;
 	}
 
-	public Integer getCategoryId() {
+	public Long getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(Integer categoryId) {
+	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -78,6 +86,14 @@ public class ProductDTO {
 
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+
+	public long getPrice() {
+		return price;
+	}
+
+	public void setPrice(long price) {
+		this.price = price;
 	}
 
 	@Override

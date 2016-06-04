@@ -6,7 +6,7 @@
 		<artifactId>multimarket.parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>multimarket.genericDao</artifactId>
+	<artifactId>multimarket.productDao</artifactId>
 
 	<dependencies>
 		<dependency>
@@ -48,7 +48,6 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>1.4.191</version>
 			<scope>test</scope>
 		</dependency>
 
