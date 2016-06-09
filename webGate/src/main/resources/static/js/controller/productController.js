@@ -3,6 +3,8 @@ AppProd.controller('ProdController', ['$scope','Product', function($scope, Produ
 	var self = this;
 	self.product = new Product();
 	self.products=[];
+	
+	self.template = 'templates/html/header.html';
 
 	self.getAllProducts = function(){
 		self.products = Product.query();
