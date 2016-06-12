@@ -4,15 +4,26 @@ AppProd.controller('ProdController', ['$scope','Product', 'FileUpload', function
 	self.product = new Product();
 	self.products=[];
 	
-	self.template = 'templates/html/header.html';
-
+	self.uploadFile = function(prodId){
+         var file = $scope.myFile;
+         var uploadUrl = "http://localhost:8090/ProductManager/uploadFiles/";
+         return FileUpload.uploadFileToUrl(prodId, file, uploadUrl);
+      };
+	
 	self.getAllProducts = function(){
 		self.products = Product.query();
 	};
 
 	self.createProduct = function(){
-		self.product.$save(function(){
-			self.getAllProducts();
+		self.product.$save(function(prod){
+			self.uploadFile(prod.id).then(
+                   function(d) {
+                	  self.getAllProducts();
+                   },
+                    function(errResponse){
+                        console.error('Error while uploading photos');
+                    }
+              );
 		});
 	};
 

@@ -93,7 +93,13 @@
 				<div class="controls">
 				  <input type="number" ng-model="ctrl.product.stock" id="inputStock" placeholder="Stock"/>
 				</div>
-		    </div>	  
+		    </div>	 
+		    <div class="control-group">
+				<label class="control-label" for="photos">Stock</label>
+				<div class="controls">
+				  <input type="file" file-model = "myFile" multiple="true" id="photos" placeholder="Select photos"/>
+				</div>
+		    </div>	 
 			<div class="control-group">
 				<div class="controls">
 					<input type="submit"  value="{{!ctrl.product.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid"/>
