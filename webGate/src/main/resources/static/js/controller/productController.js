@@ -1,5 +1,5 @@
 'use strict'
-AppProd.controller('ProdController', ['$scope','Product', function($scope, Product){
+AppProd.controller('ProdController', ['$scope','Product', 'FileUpload', function($scope, Product, FileUpload){
 	var self = this;
 	self.product = new Product();
 	self.products=[];

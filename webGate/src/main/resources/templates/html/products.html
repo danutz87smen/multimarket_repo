@@ -136,24 +136,7 @@
 		</div>
 	</div>
 
-	<div  ng-controller="ProdController as ctrl" class="tab-pane  active" id="blockView">
-		<ul class="thumbnails">
-			<li ng-repeat="u in ctrl.products"  class="span3">
-			  <div class="thumbnail">
-				<a href="product_details.html">
-						<img  src="../../static/assets/themes/images/products/3.jpg" th:src="@{/assets/themes/images/products/3.jpg}" alt=""/>
-				</a>
-				<div class="caption">
-					<h5>{{u.name}}</h5>
-					<p>{{u.description}}</p>
-				   <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">&euro;222.00</a></h4>
-				</div>
-		      </div>
-			</li>
-			
-		  </ul>
-	<hr class="soft"/>
-	</div>
+	<fillproducts controller='ctrl'></fillproducts>
 </div>
 
 	<a href="compair.html" class="btn btn-large pull-right">Compair Product</a>
@@ -189,7 +172,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script> 
     <script src="../../static/js/productModule.js" th:src="@{/js/productModule.js}" ></script>
     <script src="../../static/js/service/productService.js" th:src="@{/js/service/productService.js}"></script>
+     <script src="../../static/js/service/uploadService.js" th:src="@{/js/service/uploadService.js}"></script>
     <script src="../../static/js/controller/productController.js" th:src="@{/js/controller/productController.js}"></script>
+    <script src="../../static/js/directives/productsDirective.js" th:src="@{/js/directives/productsDirective.js}"></script>
+    <script src="../../static/js/directives/fileUploadDirective.js" th:src="@{/js/directives/fileUploadDirective.js}"></script>
+   
 
 <span id="themesBtn"></span>
 </body>
