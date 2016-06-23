@@ -1,0 +1,21 @@
+.uploadItem{
+	display:block;
+	width: 70%;
+	background-color: bisque;
+	height: 25px;
+    padding-top: 5px;
+    padding-left: 10px;
+    margin-top: 3px;
+}
+
+.uploadItemDelete{
+    display: inline-block;
+    width: 5%;
+}
+.uploadItemDelete:hover{
+	cursor: pointer; 
+}
+.uploadText{
+	width: 95%;
+    display: inline-block;
+}

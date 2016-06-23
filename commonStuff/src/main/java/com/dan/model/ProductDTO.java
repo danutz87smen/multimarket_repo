@@ -16,6 +16,7 @@ public class ProductDTO implements Serializable {
 	private List<ProductFeatureDTO> features = new ArrayList<>();
 	private Long categoryId;
 	private long price;
+	private String photos;
 
 	public ProductDTO() {
 		super();
@@ -29,7 +30,7 @@ public class ProductDTO implements Serializable {
 		this.features = features;
 	}
 
-	public ProductDTO(long id, String name, String description, Long cat, int stock, long price) {
+	public ProductDTO(long id, String name, String description, Long cat, int stock, long price, String photos) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -37,6 +38,7 @@ public class ProductDTO implements Serializable {
 		this.categoryId = cat;
 		this.stock = stock;
 		this.price = price;
+		this.photos = photos;
 	}
 
 	public ProductDTO(String name, String description, Long cat, int stock, long price) {
@@ -94,6 +96,14 @@ public class ProductDTO implements Serializable {
 
 	public void setPrice(long price) {
 		this.price = price;
+	}
+
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
 
 	@Override

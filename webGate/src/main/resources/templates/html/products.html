@@ -31,6 +31,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../static/assets/themes/images/ico/apple-touch-icon-72-precomposed.png" th:href="@{/assets/themes/images/ico/apple-touch-icon-72-precomposed.png}"></link>
     <link rel="apple-touch-icon-precomposed" href="../../static/assets/themes/images/ico/apple-touch-icon-57-precomposed.png" th:href="@{/assets/themes/images/ico/apple-touch-icon-57-precomposed.png}"></link>
 	<link rel="stylesheet" href="../../static/assets/themes/switch/themeswitch.css"   th:href="@{/assets/themes/switch/themeswitch.css}" type="text/css" media="screen" ></link>
+	<link rel="stylesheet" href="../../static/assets/css/multimarket.css"  th:href="@{/assets/css/multimarket.css}" type="text/css" media="screen" ></link>
 	<style type="text/css" id="enject"></style>
   </head>
 <body ng-app="appProd">
@@ -97,7 +98,7 @@
 		    <div class="control-group">
 				<label class="control-label" for="photos">Stock</label>
 				<div class="controls">
-				  <input type="file" file-model = "myFile" multiple="true" id="photos" placeholder="Select photos"/>
+					<file-model/>
 				</div>
 		    </div>	 
 			<div class="control-group">
@@ -177,8 +178,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script> 
     <script src="../../static/js/productModule.js" th:src="@{/js/productModule.js}" ></script>
+    <script src="../../static/js/events.js" th:src="@{/js/events.js}" ></script>
     <script src="../../static/js/service/productService.js" th:src="@{/js/service/productService.js}"></script>
-     <script src="../../static/js/service/uploadService.js" th:src="@{/js/service/uploadService.js}"></script>
+    <script src="../../static/js/service/uploadService.js" th:src="@{/js/service/uploadService.js}"></script>
     <script src="../../static/js/controller/productController.js" th:src="@{/js/controller/productController.js}"></script>
     <script src="../../static/js/directives/productsDirective.js" th:src="@{/js/directives/productsDirective.js}"></script>
     <script src="../../static/js/directives/fileUploadDirective.js" th:src="@{/js/directives/fileUploadDirective.js}"></script>

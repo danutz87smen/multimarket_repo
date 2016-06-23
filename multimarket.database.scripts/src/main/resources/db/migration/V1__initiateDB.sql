@@ -10,7 +10,8 @@ create table PRODUCT(
     DESCRIPTION varchar(300),
     CATGORY_ID int8 REFERENCES CATEGORY(ID),
     STOCK int not null,
-    PRICE int8
+    PRICE int8,
+    PHOTOS varchar(300)
  );
  
  create table FEATURE(

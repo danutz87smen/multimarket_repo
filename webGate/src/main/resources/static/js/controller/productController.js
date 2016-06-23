@@ -3,11 +3,11 @@ AppProd.controller('ProdController', ['$scope','Product', 'FileUpload', function
 	var self = this;
 	self.product = new Product();
 	self.products=[];
-	
+	self.files=[];
 	self.uploadFile = function(prodId){
-         var file = $scope.myFile;
+        // var file = $scope.myFile;
          var uploadUrl = "http://localhost:8090/ProductManager/uploadFiles/";
-         return FileUpload.uploadFileToUrl(prodId, file, uploadUrl);
+         return FileUpload.uploadFileToUrl(prodId, self.files, uploadUrl);
       };
 	
 	self.getAllProducts = function(){
@@ -41,9 +41,19 @@ AppProd.controller('ProdController', ['$scope','Product', 'FileUpload', function
 			});
 		});
 	};
-
+	self.createStringArray = function(arr, prop) {
+		   var result = [];
+		   for (var i = 0; i < arr.length; i += 1) {
+		      result.push(arr[i][prop]);
+		      result.push(i);
+		      result.push(';');
+		   }
+		   return result;
+		}
+	
 	self.submit = function(){
 		if(self.product.id==null){
+			self.product.photos = JSON.stringify(self.createStringArray(self.files, 'name'));
 			self.createProduct();
 		}else{
 			self.updateProduct();

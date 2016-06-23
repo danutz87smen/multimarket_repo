@@ -59,9 +59,9 @@ public class ProductDao implements IProductDao {
 		long id = dlsContext.nextval(Sequences.PRODUCT_SEQ).intValue();
 		dlsContext
 				.insertInto(PRODUCT, PRODUCT.ID, PRODUCT.NAME, PRODUCT.DESCRIPTION, PRODUCT.CATGORY_ID, PRODUCT.STOCK,
-						PRODUCT.PRICE)
+						PRODUCT.PRICE, PRODUCT.PHOTOS)
 				.values(id, product.getName(), product.getDescription(), product.getCategoryId(), product.getStock(),
-						product.getPrice())
+						product.getPrice(), product.getPhotos())
 				.returning(PRODUCT.ID).fetchOne();
 		product.setId(id);
 		return product;
