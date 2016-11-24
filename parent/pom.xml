@@ -12,9 +12,9 @@
 
 
 	 <scm>
-        <url>scm:git:https://github.com/danutz87smen/multimarket_repo.git</url>
-        <connection>scm:git:https://github.com/danutz87smen/multimarket_repo.git</connection>
-        <developerConnection>scm:git:https://github.com/danutz87smen/multimarket_repo.git</developerConnection>
+        <url>scm:git:https://danutz87smen:demiurg22@github.com/danutz87smen/multimarket_repo.git</url>
+        <connection>scm:git:https://danutz87smen:demiurg22@github.com/danutz87smen/multimarket_repo.git</connection>
+        <developerConnection>scm:git:https://danutz87smen:demiurg22@github.com/danutz87smen/multimarket_repo.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
