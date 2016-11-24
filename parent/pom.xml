@@ -12,9 +12,9 @@
 
 
 	 <scm>
-        <url>https://github.com/multimarket_repo/parent</url>
-        <connection>scm:git:https://github.com/danutz87smen/multimarket_repo.git</connection>
-        <developerConnection>scm:git:https://github.com/danutz87smen/multimarket_repo.git</developerConnection>
+        <url>scm:git:git@github.com:danutz87smen/multimarket_repo/parent.git</url>
+        <connection>scm:git:git@github.com:danutz87smen/multimarket_repo/parent.git</connection>
+        <developerConnection>scm:git:git@github.com:danutz87smen/multimarket_repo/parent.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
